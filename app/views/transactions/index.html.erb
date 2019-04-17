@@ -1,0 +1,57 @@
+<center>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+</br></br>
+
+<div class='container'>
+  <div class='row justify-content-around'>
+  <% @wallets.each do |wallet| %>
+      <div class="col-4">
+        <div class='card'>
+          <div class='card-title'>
+            <a href='<%= transactions_path(wallet_id: wallet.id) %>' class="card-link">
+              <%= wallet.currency.code %>
+              <%= wallet.total_amount %>
+            </a>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  </div>
+</div>
+</br></br>
+
+<h3>Transactions</h3>
+<table class='table'>
+  <thead>
+   <tr>
+     <th>From</th>
+     <th>To</th>
+     <th>Source Currency</th>
+     <th>Target Currency</th>
+     <th>Convertion Rate</th>
+     <th>Amount</th>
+     <th>Date</th>
+   </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |tr| %>
+      <tr>
+        <td><%= tr.sender.user.email%></td>
+        <td><%= tr.receiver.user.email%></td>
+        <td><%= tr.sender.currency.code%></td>
+        <td><%= tr.receiver.currency.code%></td>
+        <td><%= tr.excange_rate%></td>
+        <td>
+          <p class='<%= tr.sender.user == current_user ? 'text-danger' : 'text-success' %>'>
+            <%= tr.amount%>
+          </p>
+        </td>
+        <td><%= tr.created_at%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</br></br></br>
+<%= button_to "New Transaction", new_transaction_path, method: :get, class: 'btn btn-secondary' %>
+</center>
