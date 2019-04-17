@@ -29,7 +29,7 @@
      <th>Source Currency</th>
      <th>Target Currency</th>
      <th>Convertion Rate</th>
-     <th>Amount</th>
+     <th>Amount in Target currency</th>
      <th>Date</th>
    </tr>
   </thead>
@@ -43,7 +43,7 @@
         <td><%= tr.excange_rate%></td>
         <td>
           <p class='<%= tr.sender.user == current_user ? 'text-danger' : 'text-success' %>'>
-            <%= tr.amount%>
+            <%= tr.amount_in_target_currency%>
           </p>
         </td>
         <td><%= tr.created_at%></td>

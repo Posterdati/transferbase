@@ -20,7 +20,7 @@ class TransactionsController < ApplicationController
 
   def create
     sender_wallet = current_user.wallet_by(transaction_params[:source_currency])
-    amount = transaction_params[:amount][:total].to_i * 100
+    amount = transaction_params[:amount][:total].to_f * 100
 
     if amount > sender_wallet.total_amount_in_cents
       flash[:warning] = 'You don\'t have funds for this transfer!'

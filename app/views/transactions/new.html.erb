@@ -28,7 +28,7 @@
             <%= select_tag(:target_currency, options_for_select(@currencies.pluck(:code,:id))) %>
           </div>
           <div class="form-group">
-            <%= number_field(:amount, :total) %>
+            <%= number_field(:amount, :total, step: :any) %>
           </div>
           <div class="form-group">
             <%= link_to 'Back to transactions', root_path %>

@@ -8,10 +8,13 @@ class Transaction < ApplicationRecord
     amount_in_cents / 100
   end
 
+  def amount_in_target_currency
+    (amount_in_cents * excange_rate_in_cents) / 10000 
+  end
+
   def excange_rate
     excange_rate_in_cents / 100
   end
-
 
   def self.create_transaction!(sender, receiver, amount_in_cents)
     Transaction.transaction do
